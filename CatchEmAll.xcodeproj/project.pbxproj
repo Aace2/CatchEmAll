@@ -10,7 +10,6 @@
 		033635042CAC4E25005885F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033634FD2CAC4E25005885F8 /* Preview Assets.xcassets */; };
 		033635052CAC4E25005885F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033634FF2CAC4E25005885F8 /* Assets.xcassets */; };
 		033635072CAC4E25005885F8 /* CatchEmAllApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033635002CAC4E25005885F8 /* CatchEmAllApp.swift */; };
-		0336350D2CAC5A94005885F8 /* CreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0336350C2CAC5A94005885F8 /* CreatureViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,13 +18,17 @@
 		033634FF2CAC4E25005885F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		033635002CAC4E25005885F8 /* CatchEmAllApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchEmAllApp.swift; sourceTree = "<group>"; };
 		033635022CAC4E25005885F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0336350C2CAC5A94005885F8 /* CreatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		033635092CAC4E39005885F8 /* Views */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0343657A2CAD9A6C00836604 /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,10 +72,10 @@
 			isa = PBXGroup;
 			children = (
 				033635002CAC4E25005885F8 /* CatchEmAllApp.swift */,
-				0336350C2CAC5A94005885F8 /* CreatureViewModel.swift */,
 				033635022CAC4E25005885F8 /* Info.plist */,
 				033634FF2CAC4E25005885F8 /* Assets.xcassets */,
 				033634FE2CAC4E25005885F8 /* Preview Content */,
+				0343657A2CAD9A6C00836604 /* Models */,
 				033635092CAC4E39005885F8 /* Views */,
 			);
 			path = CatchEmAll;
@@ -95,6 +98,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				033635092CAC4E39005885F8 /* Views */,
+				0343657A2CAD9A6C00836604 /* Models */,
 			);
 			name = CatchEmAll;
 			packageProductDependencies = (
@@ -155,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				033635072CAC4E25005885F8 /* CatchEmAllApp.swift in Sources */,
-				0336350D2CAC5A94005885F8 /* CreatureViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

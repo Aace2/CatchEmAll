@@ -1,28 +1,30 @@
 //
-//  CreatureViewModel.swift
+//  CreatureDetailViewModel.swift
 //  CatchEmAll
 //
-//  Created by TheForce on 10/1/24.
+//  Created by TheForce on 10/2/24.
 //
 
 import Foundation
 
-class CreatureViewModel: ObservableObject {
+@MainActor
+class CreatureDetailViewModel: ObservableObject {
     
     private struct Returned: Codable {
-        var count: Int
-        var next: String //TODO: We'll want to change this to an option, but will demo why later
-        var results: [Result]
+        var height: Double
+        var weight: Double
+        var sprites: Sprite
     }
     
-    struct Result: Codable, Hashable {
-        var name: String
-        var url: String
+    struct Sprite: Codable {
+        var front_default: String
     }
     
-    @Published var urlString = "https://pokeapi.co/api/v2/pokemon"
-    @Published var count = 0
-    @Published var creaturesArray: [Result] = []
+    var urlString = ""
+    
+    @Published var height = 0.0
+    @Published var weight = 0.0
+    @Published var imageURL = ""
     
     func getData() async {
         print("🕸️ We are accessing the url \(urlString)")
@@ -41,43 +43,11 @@ class CreatureViewModel: ObservableObject {
                 print("😡 JSON ERROR: Could not decode returned JSON data")
                 return
             }
-            self.count = returned.count
-            self.urlString = returned.next
-            self.creaturesArray = returned.results
+            self.height = returned.height
+            self.weight = returned.weight
+            self.imageURL = returned.sprites.front_default
         } catch {
             print("😡 ERROR: Could not use URL at \(urlString) to get data and response")
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

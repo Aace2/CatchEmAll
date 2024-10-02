@@ -9,7 +9,6 @@ import Foundation
 
 @MainActor
 class CreatureDetailViewModel: ObservableObject {
-    
     private struct Returned: Codable {
         var height: Double
         var weight: Double
@@ -21,7 +20,6 @@ class CreatureDetailViewModel: ObservableObject {
     }
     
     var urlString = ""
-    
     @Published var height = 0.0
     @Published var weight = 0.0
     @Published var imageURL = ""

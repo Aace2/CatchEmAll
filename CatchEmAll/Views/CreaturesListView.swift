@@ -8,27 +8,63 @@
 import SwiftUI
 
 struct CreaturesListView: View {
-    //var creatures = ["Vhagar", "Seasmoke", "Syrax", "Sunfyre", "Vermax"]
     @StateObject var creaturesVM = CreatureViewModel()
+    @State private var searchText: String = ""
     
     var body: some View {
         NavigationStack {
-            List(creaturesVM.creaturesArray, id: \.self) { creature in
-                NavigationLink {
-                    DetailView(creature: creature)
-                } label: {
-                    Text(creature.name.capitalized)
-                        .font(.title2)
+            ZStack {
+                List(searchResults) { creature in
+                    LazyVStack {
+                        NavigationLink {
+                            DetailView(creature: creature)
+                        } label: {
+                            Text(creature.name.capitalized)
+                                .font(.title2)
+                        }
+                    }
+                    .onAppear {
+                        Task {
+                            await creaturesVM.loadNextIfNeeded(creature: creature)
+                        }
+                    }
                 }
-
+                .listStyle(.plain)
+                .navigationTitle("Pokemon")
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                       Button("Load All") {
+                           Task {
+                               await creaturesVM.loadAll()
+                           }
+                        }
+                    }
+                    ToolbarItem(placement: .status) {
+                        Text("\(creaturesVM.creaturesArray.count) of \(creaturesVM.count) creatures")
+                    }
+                }
+                .searchable(text: $searchText)
+                
+                if creaturesVM.isLoading {
+                    ProgressView()
+                        .tint(.red)
+                        .scaleEffect(4)
+                }
             }
-            .listStyle(.plain)
-            .navigationTitle("Pokemon")
         }
         .task {
             await creaturesVM.getData()
         }
     }
+    
+    var searchResults: [Creature] {
+        if searchText.isEmpty {
+            return creaturesVM.creaturesArray
+        } else {
+            return creaturesVM.creaturesArray.filter {$0.name.capitalized.contains(searchText)}
+        }
+    }
+    
 }
 
 #Preview {
